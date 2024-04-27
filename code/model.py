@@ -70,3 +70,22 @@ def model(data, feature):
     # Create a study object and optimize the objective function
     study = optuna.create_study(direction='minimize')
     study.optimize(objective, n_trials=50)
+
+def next_model(df, features):
+
+    df = impute(df[features], method='mean')
+
+    # Example model training
+    clf = IsolationForest(random_state=42)
+    clf.fit(df)
+
+    # Predict anomalies
+    anomalies = clf.predict(df)
+
+    # Add predictions to the original DataFrame
+    df['anomaly'] = anomalies
+
+    # Filter the DataFrame to show only the anomalies
+    #anomalous_data = df[df['anomaly'] == 1]
+
+    return df
