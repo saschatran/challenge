@@ -163,3 +163,5 @@ cython_debug/
 # no data allowed
 *.csv
 /data
+
+.DS_Store
