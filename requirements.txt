@@ -3,3 +3,6 @@ pandas
 matplotlib
 featuretools
 missingno
+optuna
+scikit-learn
+xgboost

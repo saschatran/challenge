@@ -4,16 +4,23 @@ import numpy as np
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
-def total_aggregate(df, agg_by):
+def total_aggregate(df, agg_by, ignore_first=False):
+
+    if ignore_first:
+        df = df.sort_values(by=['business_entity_doing_business_as_name', 'period_end_date'])
+        # remove for each business the first entry
+        df = df.groupby('business_entity_doing_business_as_name').apply(lambda x: x.iloc[1:]).reset_index(drop=True)
+
+
     # Aggregating likes per date
     aggregated_data = df.groupby('period_end_date')[agg_by].sum().reset_index()
 
     # Plotting
     plt.figure(figsize=(12, 6))
     plt.plot(aggregated_data['period_end_date'], aggregated_data[agg_by], marker='o')
-    plt.title(f'Total {agg_by} Over Time')
+    plt.title(f'Relative {agg_by} Over Time')
     plt.xlabel('Date')
-    plt.ylabel(f'Total {agg_by}')
+    plt.ylabel(f'Relative {agg_by}')
     plt.grid(True)
     plt.xticks(rotation=45)  # Rotate date labels for better readability
     plt.tight_layout()
