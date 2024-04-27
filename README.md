@@ -8,3 +8,8 @@
 
 - There is a Dockerfile, requirements.txt file and a .devcontainer. If you're not familiar with Docker, just ignore it:)
 
+## About the data
+
+- You can access the GINI-dataset here: [gini_data_url](https://data.worldbank.org/indicator/SI.POV.GINI?end=2023&start=2023&view=bar)
+- As for the instagram dataset - sorry this is insider knowledge :)
+
