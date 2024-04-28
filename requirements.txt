@@ -4,4 +4,4 @@ matplotlib
 featuretools
 seaborn
 optuna
-featuretools
+missingno
