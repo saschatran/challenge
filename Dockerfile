@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.8
+FROM python
 
 # Set the working directory in the container
 WORKDIR /usr/src/
@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y \
 # Install Python dependencies
 # Copy just the requirements.txt first to leverage Docker cache
 COPY requirements.txt ./
+RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Install Jupyter
