@@ -12,7 +12,10 @@ def process_gini(df):
     df_real.dropna(subset=['domicile_country_name'], inplace=True)
 
     # remove leading and trailing whitespaces and convert to lowercase
-    df_Gini = df_Gini.map(lambda x: x.strip().lower() if isinstance(x, str) else x)
+    #df_Gini = df_Gini.map(lambda x: x.strip().lower() if isinstance(x, str) else x)
+    for varname in df.columns:
+        # 1. remove leading and trailing whitespaces and convert to lowercase
+        df[varname] = df[varname].apply(lambda x: x.strip().lower() if isinstance(x, str) else x)
 
    
     #reduce the size of the data set df_Gini to only the countrys in the df_real data set
